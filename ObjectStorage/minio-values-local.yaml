@@ -1,0 +1,11 @@
+mode: standalone  # or distributed for multi-node setup
+persistence:
+  size: 20Gi
+  storageClass: "directpv-min-io"
+resources:
+  requests:
+    memory: 1Gi
+accessKey: "minioadmin"  # Change this
+secretKey: "minioadmin"  # Change this
+service:
+  type: ClusterIP  # or LoadBalancer/NodePort based on your needs
