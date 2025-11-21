@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: redis-init
+spec:
+  template:
+    spec:
+      containers:
+        - name: redis-init
+          image: redis:7.2
+          command:
+            - sh
+            - -c
+            - |
+              redis-cli --cluster create \
+                redis-0.redis:6379 \
+                redis-1.redis:6379 \
+                redis-2.redis:6379 \
+                --cluster-replicas 1 --cluster-yes
+      restartPolicy: OnFailure
